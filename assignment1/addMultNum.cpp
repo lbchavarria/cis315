@@ -14,13 +14,18 @@ void addMultNum(int x, int y) {
 int main() {
     char b;
     char c;
+    int a;
     int x, y;
-    cin.get(b);
-    int a = (int) b;
-    cout << b << endl;
-    cout << a << endl; 
     string line;
-    for (int i = 0; i < 1; i++) {
+    //cin.get(b);
+    getline(cin, line);
+    istringstream iss(line);
+    iss >> a;
+    //int a = (int) b;
+    cout << b;
+    cout << a << endl; 
+    //string line;
+    for (int i = 0; i < a; i++) {
         getline(cin, line);
         istringstream iss(line);
         iss >> x >> y;
