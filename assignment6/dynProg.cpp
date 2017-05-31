@@ -7,6 +7,7 @@
 using namespace std;
 
 boolean can_split;
+vector<string> dict;
 
 string msplit(string x) {
     /*check if word is in array
@@ -19,6 +20,7 @@ string msplit(string x) {
  * run split on second variable
  * return divided substring
  */
+    vector<string> str;
     if (dictionary(x)) {
         
     }
@@ -33,7 +35,7 @@ string bsplit(string x) {
 
 }
 
-bool dictionary(string x, vector<string> dict) {
+bool dictionary(string x) {
    /*check dictionary if x is in dictionary
  * if true, retrun true
  */ 
@@ -46,7 +48,6 @@ bool dictionary(string x, vector<string> dict) {
 }
 
 int main() {
-    vector<str> dict;
     string str, line;
     int n;
     ifstream in;
