@@ -9,14 +9,13 @@ using namespace std;
 vector<int> path_list;
 
 int pathCount(map<int, vector<int> > map, int start, int end) {
-    int count = 1;
-    int a = 0;
-    if (map[start].size() == 0) {
+    int count = 0;
+    if (map[start].empty()) {
         count = 0;
         return count;
     }
     for (int i = 0; i < map[start].size(); i++) {
-        count += pathCount(map, map[start][i], end);
+        count += 1 + pathCount(map, map[start][i], end);
         if (map[start][i] == end) {
             path_list.push_back(count);
         }

@@ -17,7 +17,7 @@ int main() {
     string line;
     getline(cin, line);
     istringstream iss(line);
-    iss >> a;
+    iss >> line_num;
     for (int i = 0; i < line_num; i++) {
         getline(cin, line);
         istringstream iss(line);
