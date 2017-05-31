@@ -8,14 +8,24 @@ using namespace std;
 
 vector<int> path_list;
 
+<<<<<<< HEAD
 int pathCount(map<int, vector<int> > map, int start, int end) {
     int count = 0;
     if (map[start].empty()) {
+=======
+int pathCount(map<int, vector<int> > map, int start, int end, int count) {
+    count = 1;
+    if (map[start].size() == 0) {
+>>>>>>> 713daf660a606b6afe8138ed8f0324089f4e5d94
         count = 0;
         return count;
     }
     for (int i = 0; i < map[start].size(); i++) {
+<<<<<<< HEAD
         count += 1 + pathCount(map, map[start][i], end);
+=======
+        count += pathCount(map, map[start][i], end, count);
+>>>>>>> 713daf660a606b6afe8138ed8f0324089f4e5d94
         if (map[start][i] == end) {
             path_list.push_back(count);
         }
@@ -82,7 +92,8 @@ int main() {
             iss >> x >> y;
             map[x].push_back(y);
         }
-        int a = pathCount(map, 1, node_num);
+        int a = 0;
+        a = pathCount(map, 1, node_num, a);
         path_num = path_list.size();
         printPaths(i, path_num);
         clearPathList();
