@@ -6,7 +6,9 @@
 
 using namespace std;
 
-void split(string x) {
+boolean can_split;
+
+string msplit(string x) {
     /*check if word is in array
  * if true return value
  * else 
@@ -17,19 +19,47 @@ void split(string x) {
  * run split on second variable
  * return divided substring
  */
+    if (dictionary(x)) {
+        
+    }
+    else {
+        for (int i = 0; i < x.length(); i++) {
+            
+        }
+    }
 }
 
-bool dictionary(string x) {
+string bsplit(string x) {
+
+}
+
+bool dictionary(string x, vector<string> dict) {
    /*check dictionary if x is in dictionary
  * if true, retrun true
  */ 
+    for (int i = 0; i < dict.size(); i++) {
+        if (x == dict[i]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 int main() {
     vector<char> s;
-    string str;
+    string str, line;
     int n;
     ifstream in;
     in.open("dictionMed.txt") // change to diction10k.txt
+    getline(cin, line);
+    istringstream iss(line);
+    iss >> n;
+    for (i = 1; i <= n; i++) {
+        getline(cin, line);
+        istringstream iss(line);
+        iss >> str;
+        bsplit(str);
+        msplit(str);
+    }
     return 0;
 }
