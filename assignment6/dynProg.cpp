@@ -46,11 +46,14 @@ bool dictionary(string x, vector<string> dict) {
 }
 
 int main() {
-    vector<char> s;
+    vector<str> dict;
     string str, line;
     int n;
     ifstream in;
     in.open("dictionMed.txt") // change to diction10k.txt
+    copy(istream_iterator<string>(in),
+         istream_iterator<string>(),
+         back_inserter(dict));
     getline(cin, line);
     istringstream iss(line);
     iss >> n;
@@ -58,8 +61,26 @@ int main() {
         getline(cin, line);
         istringstream iss(line);
         iss >> str;
-        bsplit(str);
-        msplit(str);
+        cout << "phrase number: " << i << endl;
+        cout << str << endl;
+        cout << "iterative attempt:" << endl;
+        string bsplit = bsplit(str);
+        if (can_split) {
+            cout << "YES, can be split" << endl;
+            cout << bsplit << endl << endl;
+        }
+        else {
+            cout << "NO, cannot be split" << endl << endl;
+        }
+        cout << "memoized attempt:" << endl;
+        string msplit = msplit(str);
+        if (can_split) {
+            cout << "YES, can be split" << endl;
+            cout << msplit << endl << endl << endl;
+        }
+        else {
+            cout << "NO, cannot be split" << endl << endl << endl;
+        }
     }
     return 0;
 }
