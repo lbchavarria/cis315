@@ -3,11 +3,15 @@
 #include <sstream>
 #include <vector>
 #include <fstream>
+#include <iterator>
+#include <algorithm>
 
 using namespace std;
 
 boolean can_split;
 vector<string> dict;
+string s;
+int m;
 
 string msplit(string x) {
     /*check if word is in array
@@ -20,15 +24,21 @@ string msplit(string x) {
  * run split on second variable
  * return divided substring
  */
-    vector<string> str;
-    if (dictionary(x)) {
-        
+    string str;
+    if (x == "") {
+        return "";
     }
     else {
         for (int i = 0; i < x.length(); i++) {
-            
+            str.append(x.substr(0,1));
+            string substr2 = x.substr(1);
+            if (dictionary(str)) {
+                str.append(" ");
+            }
+            str.append(split(substr2));
         }
     }
+    return str;
 }
 
 string bsplit(string x) {
@@ -39,12 +49,20 @@ bool dictionary(string x) {
    /*check dictionary if x is in dictionary
  * if true, retrun true
  */ 
-    for (int i = 0; i < dict.size(); i++) {
-        if (x == dict[i]) {
-            return true;
+    vector<string> v = tokenize(x);
+    for (int i = 0; i < v.size(); i++) {
+        if (dict.find(dict.begin(), dict.end(), v[i]) == dict.end) {
+            return false;
         }
     }
-    return false;
+    return true;
+}
+
+vector<string> tokenize(string str) {
+    istringstream iss(str);
+    vector<string> tokens{istream_iterator<string>{iss},
+                          istream_iterator<string>{}};
+    return tokens;
 }
 
 int main() {
