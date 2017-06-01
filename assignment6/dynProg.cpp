@@ -13,10 +13,6 @@ vector<string> dict;
 string s;
 int m;
 
-string bsplit(string x) {
-    return "";
-}
-
 vector<string> tokenize1(string str) {
     istringstream iss(str);
     vector<string> tokens{istream_iterator<string>{iss},
@@ -35,43 +31,6 @@ bool dictionary1(string x) {
         }
     }
     return true;
-}
-
-string msplit(string x, string str) {
-    /*check if word is in array
- * if true return value
- * else 
- * for 1 to length of x
- * split into two variables, first is first character of x, second is remaining characters of x
- * check if first variable is in dictionary
- * if true store in array
- * run split on second variable
- * return divided substring
- */
-    if (x == "") {
-        cout << "end of string" << endl;
-        return "";
-    }
-    else {
-        for (int i = 0; i < x.length(); i++) {
-            str.append(x.substr(0,1));
-            string substr2 = x.substr(1);
-            cout << "substrings made: " << str << " " << substr2 << endl;
-            if (dictionary1(str)) {
-                cout << "in dictionary" << endl;
-                str.append(" ");
-                can_split = true;
-            }
-            else {
-                cout << "not in dictionary" << endl;
-                can_split = false;
-            }
-            cout << "split" << endl;
-            str.append(msplit(substr2, str));
-        }
-    }
-    cout << "done" << endl;
-    return str;
 }
 
 bool memosplit(string x, vector<string> memory, string answer) {
@@ -103,6 +62,50 @@ bool memosplit(string x, vector<string> memory, string answer) {
         return false;
     }
 }
+/*
+bool botsplit(string x) {
+    if (x == "") {
+        return false;
+    }
+    if (x.length() == 1) {
+        if (dictionary1(x)) {
+            s = x;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    vector<bool> t(x.length()+1, false);
+    t[0] = true;
+    for (int i = 0; i <= x.length(); i++) {
+        for (int j = 0; j < i; j++) {
+            if (dictionary1(x.substr(j, i))) {
+                s.append(x.substr(j, i));
+                s.append(" ");
+                t[i] = true;
+            }
+        }
+    }
+    return t[x.length()];
+}*/
+
+bool botsplit(string x) {
+    if (x == "") {
+        return false;
+    }
+    vector<bool> t(x.length()+1, false);
+    t[0] = true;
+    for (int i = 1; i <= x.length(); ++i) {
+        for (int j = 1; j <= i; ++j) {
+            string temp = x.substr(j-1, i-j+1);
+            if (t[j-1] && dictionary1(temp)) {
+                t[i] = true;
+            }
+        }
+    }
+    return t[x.length()];
+}
 
 int main() {
     string str, line;
@@ -121,15 +124,16 @@ int main() {
         iss >> str;
         cout << "phrase number: " << i << endl;
         cout << str << endl;
-        /*cout << "iterative attempt:" << endl;
-        string bsplit = bsplit(str);
-        if (can_split) {
+        cout << "iterative attempt:" << endl;
+        //string bsplit = bsplit(str);
+        if (botsplit(str)) {
             cout << "YES, can be split" << endl;
-            cout << bsplit << endl << endl;
+            cout << s << endl << endl;
         }
         else {
             cout << "NO, cannot be split" << endl << endl;
-        }*/
+        }
+        s = "";
         cout << "memoized attempt:" << endl;
         string split = "";
         //split = msplit(str, split);
