@@ -100,6 +100,8 @@ bool botsplit(string x) {
         for (int j = 1; j <= i; ++j) {
             string temp = x.substr(j-1, i-j+1);
             if (t[j-1] && dictionary1(temp)) {
+                s.append(temp);
+                s.append(" ");
                 t[i] = true;
             }
         }
