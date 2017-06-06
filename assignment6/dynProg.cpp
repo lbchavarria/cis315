@@ -88,7 +88,7 @@ bool botsplit(string x) {
     }
     return t[x.length()];
 }*/
-/*
+
 bool botsplit(string x) {
     if (x == "") {
         return false;
@@ -106,7 +106,7 @@ bool botsplit(string x) {
         }
     }
     return t[x.length()];
-}*/
+}
 /*
 bool botsplit(string x) {
     if (x.length() == 0) {
@@ -132,7 +132,7 @@ bool botsplit(string x) {
     s = word;
     return t[last];
 }*/
-
+/*
 bool botsplit(string x) {
     if (x == "") {
         return false;
@@ -151,7 +151,7 @@ bool botsplit(string x) {
         }
     }
     return t[0];
-}
+}*/
 
 int main() {
     string str, line;
