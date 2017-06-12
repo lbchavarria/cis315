@@ -7,7 +7,7 @@
 using namespace std;
 
 vector<int> path_list;
-
+/*
 int pathCount(map<int, vector<int> > map, int start, int end) {
     int count = 1;
     if (map[start].size() == 0) {
@@ -21,6 +21,21 @@ int pathCount(map<int, vector<int> > map, int start, int end) {
         }
     }
     return count;
+}*/
+
+void pathCount(map<int, vector<int> > map, int start, int end, int count) {
+    count++;
+    for (int i = 0; i < map[start].size(); i++) {
+        if (map[start][i] == end) {
+            path_list.push_back(count);
+            count = 0;
+//            cout << "add" << endl;
+        }
+        else {
+//            cout << "next" << endl;
+            pathCount(map, map[start][i], end, count);
+        }
+    }
 }
 
 void printPaths(int graph_num, int path_num) {
@@ -63,6 +78,7 @@ int main() {
     map<int, vector<int> > map;
     int x, y, graph_num,  node_num, edge_num, path_num;
     int a = 0;
+    int en = 0;
     string line;
     getline(cin, line);
     istringstream iss(line);
@@ -81,9 +97,13 @@ int main() {
             istringstream iss(line);
             iss >> x >> y;
             map[x].push_back(y);
+//            cout << "edge added" << en++  << endl;
         }
-        int a = pathCount(map, 1, node_num);
+//        cout << "start" << endl;
+        pathCount(map, 1, node_num, a);
+//        cout << "calculated" << endl;
         path_num = path_list.size();
+//        cout << "print" << endl;
         printPaths(i, path_num);
         clearPathList();
     }
